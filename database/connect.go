@@ -3,15 +3,14 @@ package database
 import (
 	"app/models"
 
-	"gorm.io/driver/postgres"
+	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
 
 var db *gorm.DB
 
 func Connect() {
-	dsn := "user=postgres password=123456 dbname=go_auth port=5432 sslmode=disable TimeZone=Asia/Bangkok"
-	connection, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	connection, err := gorm.Open(sqlite.Open("test.db"), &gorm.Config{})
 	if err != nil {
 		panic("failed to connect database")
 	}

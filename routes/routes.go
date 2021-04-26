@@ -24,9 +24,12 @@ func Serve(app *fiber.App) *fiber.App {
 		v1.Get("/logout", authController.Logout)
 	}
 
-	userController := controllers.Reset{DB: db}
+	userController := controllers.ResetPassword{DB: db}
 
-	v1.Post("/forgot", userController.Forgot)
+	{
+		v1.Post("/forgot", userController.Forgot)
+		v1.Post("/reset", userController.Reset)
+	}
 
 	return app
 }
