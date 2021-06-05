@@ -9,13 +9,12 @@ import (
 
 func Serve(app *fiber.App) *fiber.App {
 	db := database.GetDB()
+	app.Get("/", func(c *fiber.Ctx) error {
+		return c.SendString("Hello, World 👋!")
+	})
 
 	v1 := app.Group("/api/v1")
 	authController := controllers.Auth{DB: db}
-
-	v1.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("Hello, World 👋!")
-	})
 
 	{
 		v1.Post("/register", authController.Register)

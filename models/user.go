@@ -9,7 +9,7 @@ type User struct {
 	gorm.Model
 	FirstName string `gorm:"not null"`
 	LastName  string
-	Email     string `gorm:"uniqueIndex;not null"`
+	Email     string `gorm:"unique_index;not null"`
 	Password  string `gorm:"not null"`
 }
 

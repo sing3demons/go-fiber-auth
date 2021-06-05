@@ -42,7 +42,7 @@ func (r *ResetPassword) Forgot(ctx *fiber.Ctx) error {
 	return ctx.JSON(passwordReset)
 }
 
-func (r ResetPassword) Reset(ctx *fiber.Ctx) error {
+func (r *ResetPassword) Reset(ctx *fiber.Ctx) error {
 	var form map[string]string
 	if err := ctx.BodyParser(&form); err != nil {
 		return err
