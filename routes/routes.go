@@ -7,7 +7,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func Serve(app *fiber.App) *fiber.App {
+func Serve(app *fiber.App) {
 	db := database.GetDB()
 	app.Get("/", func(c *fiber.Ctx) error {
 		return c.SendString("Hello, World 👋!")
@@ -30,5 +30,4 @@ func Serve(app *fiber.App) *fiber.App {
 		v1.Post("/reset", userController.Reset)
 	}
 
-	return app
 }

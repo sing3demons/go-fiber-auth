@@ -1,7 +1,6 @@
 package main
 
 import (
-	"app/database"
 	"app/routes"
 	"log"
 	"os"
@@ -17,9 +16,11 @@ func main() {
 		log.Fatal("Error loading .env file")
 	}
 
-	database.Connect()
 	app := fiber.New()
+
 	app.Use(cors.New(cors.Config{AllowCredentials: true}))
+
 	routes.Serve(app)
-	app.Listen(":"+os.Getenv("PORT"))
+	
+	app.Listen(":" + os.Getenv("PORT"))
 }
